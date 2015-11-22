@@ -43,7 +43,6 @@ describe("About Applying What We Have Learnt", function() {
         });
         return edible && !item.containsNuts;
       })
-      console.log(productsICanEat)
 
       expect(productsICanEat.length).toBe(1);
   });
@@ -80,15 +79,25 @@ describe("About Applying What We Have Learnt", function() {
         }
     }
 
-    expect(ingredientCount['mushrooms']).toBe(FILL_ME_IN);
+    expect(ingredientCount['mushrooms']).toBe(2);
   });
 
   it("should count the ingredient occurrence (functional)", function () {
     var ingredientCount = { "{ingredient name}": 0 };
 
     /* chain() together map(), flatten() and reduce() */
+    _.chain(products)
+      .map(function(item) {
+        return item.ingredients;
+      })
+      .flatten(true)
+      .reduce(function(start, val) {
+        ingredientCount[val] = ingredientCount[val]+1 || 1;
+        return ingredientCount
+      }, ingredientCount)
+      .value()
 
-    expect(ingredientCount['mushrooms']).toBe(FILL_ME_IN);
+    expect(ingredientCount['mushrooms']).toBe(2);
   });
 
   /*********************************************************************************/
