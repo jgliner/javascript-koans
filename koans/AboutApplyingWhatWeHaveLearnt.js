@@ -101,13 +101,29 @@ describe("About Applying What We Have Learnt", function() {
   });
 
   /*********************************************************************************/
-  /* UNCOMMENT FOR ADVANCED */
-  /*
-  it("should find the largest prime factor of a composite number", function () {
+  // ADVANCED
   
+  it("should find the largest prime factor of a composite number", function () {
+    var largestPrime = function(n) {
+      var factors = _.filter(_.range(2,n), function(item) {
+        return n%item === 0;
+      }).reverse();
+
+      if (factors.length === 0) {
+        return n
+      }
+
+      return largestPrime(factors[0]);
+    }
+
+    expect(largestPrime(805)).toBe(23);
+    expect(largestPrime(858)).toBe(13);
+    expect(largestPrime(1014)).toBe(13);
+    expect(largestPrime(7140)).toBe(17);
+    expect(largestPrime(10141991)).toBe(257);
   });
 
-  it("should find the largest palindrome made from the product of two 3 digit numbers", function () {
+  /*it("should find the largest palindrome made from the product of two 3 digit numbers", function () {
     
   });
 
@@ -122,6 +138,6 @@ describe("About Applying What We Have Learnt", function() {
 
   it("should find the 10001st prime", function () {
 
-  });
-  */
+  });*/
+  
 });
