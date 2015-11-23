@@ -123,11 +123,31 @@ describe("About Applying What We Have Learnt", function() {
     expect(largestPrime(10141991)).toBe(257);
   });
 
-  /*it("should find the largest palindrome made from the product of two 3 digit numbers", function () {
-    
+  it("should find the largest palindrome made from the product of two 3 digit numbers", function () {
+    var palindromeProduct = function(x, y) {
+      var n = (x*y).toString();
+      var temp = '';
+      var result = '';
+      for (var i = 0; i < n.length; i++) {
+        for (var j = 0; j < n.length; j++) {
+          temp = n.slice(0,-j);
+          if (temp.split('').reverse().join('') === temp && temp.length > result.length) {
+            result = temp;
+          }
+        }
+        n = n.slice(1);
+      }
+      return result;
+    }
+
+    expect(palindromeProduct(123, 123)).toBe('151');   //15129
+    expect(palindromeProduct(100, 200)).toBe('000');   //2000
+    expect(palindromeProduct(772, 241)).toBe('1');     //325012
+    expect(palindromeProduct(999, 910)).toBe('90909'); //909090
+    expect(palindromeProduct(858, 619)).toBe('11');    //531102
   });
 
-  it("should find the smallest number divisible by each of the numbers 1 to 20", function () {
+  /*it("should find the smallest number divisible by each of the numbers 1 to 20", function () {
       
     
   });
